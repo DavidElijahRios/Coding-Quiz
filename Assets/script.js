@@ -1,8 +1,6 @@
-
-var quizContainer = document.querySelector('#quiz');
-
 // I need to create an object of questions and the answers an array within the object to easily access data
-var questions = [
+questions = [
+    
     {
         question: "What does HTML stand for?",
         answers: {
@@ -63,18 +61,83 @@ var questions = [
         },
         correctAnswer: 'b'
     },
-
 ];
+
+// Variables to be used for adding content on HTML page
+var quizContainer = document.querySelector('#quiz-container');
+var questionOptions = document.querySelector('#questions');
+var answerOptions = document.querySelector('#answerChoices');
+var timerEl = document.querySelector('#timer');
+
+//Variables for buttons
+var start = document.querySelector('#start');
+var restart = document.querySelector('#restart');
+var addHigh = document.querySelector('addHighScore');
+
+//Other Variables
+var chosenQuestion = "";
+var createUl = document.createElement("ul");
+var timer;
+var timerCount;
+var isWin = false;
+
+
+
+
 //need to create a function to start the quiz 
 function startQuiz() {
-    // Ill need an empty array to to store the output of the answer choices
-    
-    
+    start.addEventListener("click", function() {
+       
+        isWin = false;
+        timerCount = 60;
+        for(let i = 0; i < questions.length; i++)
+        questionOptions.textContent = questions[i];
+        console.log(questions.question)
+    })
+    timer();
 }
- startQuiz()
+startQuiz();
+//I want this function to display questions on page for user to see
+// function displayQuestions() {
+//      chosenQuestion = questions[Math.floor(Math.random() * questions.length)]
+//  }
 
-//function will need quiz questions
-//funtion will need a place to put quiz
-//function will need a place for the results
-//function will need a submit button
 
+
+// // I want this function to display answer choices on the page for user to select
+// function displayAnsChoices() {
+// }
+
+
+
+// //I want this function to start the timer
+function timer() {
+    timer = setInterval(function() {
+        timerCount = 60;
+        timerCount--;
+        timerEl.textContent = "Time:" + timerCount;
+        if (timerCount >= 0) {
+          // Tests if win condition is met
+          if (isWin && timerCount > 0) {
+            // Clears interval and stops timer
+            clearInterval(timer);
+        }
+    } 
+        // Tests if time has run out
+        if (timerCount === 0) {
+          // Clears interval
+          clearInterval(timer);
+          
+        }
+    }, 1000)
+}
+
+
+
+// //I want this function to restart game which restart everything
+// function resetGame() {
+
+// }
+
+// // function to reset high scores to 0
+// function resetHighScores() {}
