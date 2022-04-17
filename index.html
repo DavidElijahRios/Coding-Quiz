@@ -4,32 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Assets/style.css">
     <title>Coding Quiz</title>
 </head>
 <body>
     <header>
         <!-- Create a class that separates the view high scores and see time displayed -->
         <!-- Will need to also attach Js and event listener to view high score -->
-        <h4 id="viewHighscores">View Highscores</h4>
+        <h4 id="viewHighScores">View Highscores</h4>
         <h4 id="timer">Time:</h4>
     </header>
           <!-- This div will be for the quiz linked to Js -->
-          <div id="quiz-container">
-           <p>Try to answer the following code-related questions within the time limit.
-               Keep in mind that incorrect answers will penalize your score/time by 10 seconds!
-           </p>
-          </div>
+        <div id="quiz-container">
            <!-- This div will be for the questions to appear and disappear -->
-            <div id="questions">""</div>
+            <div id="questions">Try to answer the following code-related questions within the time limit.
+                Keep in mind that incorrect answers will penalize your score/time by 10 seconds!</div>
             <!-- This Div will be for the answers to appear and disappear -->
             <!-- TODO: Add a form tag within in the div with input type radio -->
-             <div id="answerChoices"></div>
+             <div id="answerOptions">
+                 <button id="a">A</button>
+                 <button id="b">B</button>
+                 <button id="c">C</button>
+                 <button id="d">D</button>
+               
+             </div>
+        </div>  
     <!-- This Section will be for controls of quiz -->
-    <section>
+    <section class="buttons">
         <button id="restart">Restart</button>
         <button id="addHighScore">Add High Score</button>
         <button id="start">Start</button>
-        <form> <input type="text"></form>
+       
     </section>
                     
     <script src="assets/script.js"></script>

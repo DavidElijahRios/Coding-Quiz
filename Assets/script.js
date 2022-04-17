@@ -1,5 +1,5 @@
 // I need to create an object of questions and the answers an array within the object to easily access data
-questions = [
+var questions = [
     
     {
         question: "What does HTML stand for?",
@@ -66,78 +66,124 @@ questions = [
 // Variables to be used for adding content on HTML page
 var quizContainer = document.querySelector('#quiz-container');
 var questionOptions = document.querySelector('#questions');
-var answerOptions = document.querySelector('#answerChoices');
+var answerOptions = document.querySelector('#answerOptions');
 var timerEl = document.querySelector('#timer');
+
 
 //Variables for buttons
 var start = document.querySelector('#start');
 var restart = document.querySelector('#restart');
 var addHigh = document.querySelector('addHighScore');
+var buttonA = document.querySelector('#a');
+var buttonB = document.querySelector('#b');
+var buttonC = document.querySelector('#c');
+var buttonD = document.querySelector('#d');
 
 //Other Variables
-var chosenQuestion = "";
-var createUl = document.createElement("ul");
 var timer;
 var timerCount;
-var isWin = false;
-
-
+// to keep track of question number
+var questionNumber = 0;
+// Too keep track of score
+var score = 0;
+// to keep track of how much time is left
+var timeLeft = 0;
 
 
 //need to create a function to start the quiz 
 function startQuiz() {
     start.addEventListener("click", function() {
        
-        isWin = false;
         timerCount = 60;
-        for(let i = 0; i < questions.length; i++)
-        questionOptions.textContent = questions[i];
-        console.log(questions.question)
+
+        buttonAppear();
+        displayQuestions(questionNumber);
+        timer();
     })
-    timer();
+
 }
-startQuiz();
+//this function is for buttons choices to appear once quiz has initiated 
+function buttonAppear() {
+    answerOptions.style.visibility = "visible";
+}
+
 //I want this function to display questions on page for user to see
-// function displayQuestions() {
-//      chosenQuestion = questions[Math.floor(Math.random() * questions.length)]
-//  }
+function displayQuestions(questionNum) {
+     
+
+     questionOptions.textContent = questions[questionNum].question;
+     buttonA.textContent = "A. " + questions[questionNum].answers.a;
+     buttonB.textContent = "B. " + questions[questionNum].answers.b;
+     buttonC.textContent = "C. " + questions[questionNum].answers.c;
+     buttonD.textContent = "D. " + questions[questionNum].answers.d;
+ }
 
 
 
-// // I want this function to display answer choices on the page for user to select
-// function displayAnsChoices() {
-// }
-
-
-
-// //I want this function to start the timer
+//I want this function to start the timer
 function timer() {
+    timerCount = 60;
     timer = setInterval(function() {
-        timerCount = 60;
+        
         timerCount--;
         timerEl.textContent = "Time:" + timerCount;
-        if (timerCount >= 0) {
-          // Tests if win condition is met
-          if (isWin && timerCount > 0) {
-            // Clears interval and stops timer
-            clearInterval(timer);
-        }
-    } 
-        // Tests if time has run out
         if (timerCount === 0) {
-          // Clears interval
-          clearInterval(timer);
-          
-        }
-    }, 1000)
+            // Clears interval
+            clearInterval(timer);
+            }
+
+    } , 1000)
+}
+
+
+// This will be to reset the game
+function resetGame() {
+  restart.addEventListener("click", function() {
+      clearInterval(timer)
+      score = 0;
+      questionNumber = 0;
+      timeLeft = 0;
+      timer = null;
+      timerEl.textContent = timeLeft;
+  })
 }
 
 
 
-// //I want this function to restart game which restart everything
-// function resetGame() {
-
-// }
-
-// // function to reset high scores to 0
 // function resetHighScores() {}
+
+
+
+//this function increases the time by 10 seconds when a question is answered correctly
+function correctAnswer() {
+    timeLeft += 10;
+    nextQuestion();
+}
+
+//this function decreases the time by 10 seconds when a question is answered incorrectly
+function WrongAnswer() {
+   timeLeft -= 10;
+   nextQuestion();
+}
+
+//this function will display next question
+function nextQuestion() {
+
+}
+
+
+startQuiz();
+resetGame();
+
+
+
+
+
+//example of how parameters work
+// function math(num1, num2, operation) {
+//     if (operation === "+"){
+//         return num1 + num2
+//     } else if (operation === "-") {
+//         return num1 - num2
+//     }
+// }
