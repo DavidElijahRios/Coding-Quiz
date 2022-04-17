@@ -1,4 +1,3 @@
-// I need to create an object of questions and the answers an array within the object to easily access data
 var questions = [
     
     {
