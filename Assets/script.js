@@ -8,17 +8,17 @@ var questions = [
             c: 'Hyper Text Markup Language',
             d: 'Hover Text Machine Language'
         },
-        correctAnswer: 'c'
+        correctAnswer: 'Hyper Text Markup Language'
     },
     {
         question: "what syntax is used to make a comment in JavaScript?",
         answers: {
-            a: '<!-- -->',
+            a: "<!-- -->",
             b: '//',
             c: '/**/',
             d: 'None of the above'
         },
-        correctAnswer: 'b'
+        correctAnswer: '//'
     },
     {
         question: "What does API Stand for?",
@@ -28,7 +28,7 @@ var questions = [
             c: 'Adjusting Programming Interface',
             d: 'Application Programing Interface'
         },
-        correctAnswer: 'd'
+        correctAnswer: 'Application Programing Interface'
     },
     {
         question: "What does CSS Stand for?",
@@ -38,7 +38,7 @@ var questions = [
             c: 'Cascading Style Syntax',
             d: 'Color Style Sheet'
         },
-        correctAnswer: 'a'
+        correctAnswer: 'Cascading Style Sheet'
     },
     {
         question: "What is used for HTML comment?",
@@ -48,7 +48,7 @@ var questions = [
             c: '<!-- -->',
             d: 'None of the above'
         },
-        correctAnswer: 'c'
+        correctAnswer: '<!-- -->'
     },
     {
         question: "What does JS stand for?",
@@ -58,7 +58,7 @@ var questions = [
             c: 'JustinSelena',
             d: 'JavaSyntax'
         },
-        correctAnswer: 'b'
+        correctAnswer: 'JavaScript'
     },
 ];
 
@@ -110,13 +110,58 @@ function buttonAppear() {
 function displayQuestions(questionNum) {
      
 
-     questionOptions.textContent = questions[questionNum].question;
-     buttonA.textContent = "A. " + questions[questionNum].answers.a;
-     buttonB.textContent = "B. " + questions[questionNum].answers.b;
-     buttonC.textContent = "C. " + questions[questionNum].answers.c;
-     buttonD.textContent = "D. " + questions[questionNum].answers.d;
+     questionOptions.innerHTML = questions[questionNum].question;
+     buttonA.textContent = questions[questionNum].answers.a;
+     buttonB.textContent = questions[questionNum].answers.b;
+     buttonC.textContent = questions[questionNum].answers.c;
+     buttonD.textContent = questions[questionNum].answers.d;
+  
+     
  }
-
+ buttonA.addEventListener("click", function(e) {
+    e.preventDefault();
+    console.log(this.innerHTML)
+    console.log(questions[questionNumber].correctAnswer)
+    if (this.innerHTML === questions[questionNumber].correctAnswer) {
+        console.log("correct")
+    } else {
+        console.log("incorrect")
+    }
+    nextQuestion();
+})
+buttonB.addEventListener("click", function(e) {
+    e.preventDefault();
+    console.log(this.innerHTML)
+    console.log(questions[questionNumber].correctAnswer)
+    if (this.innerHTML === questions[questionNumber].correctAnswer) {
+        console.log("correct")
+    } else {
+        console.log("incorrect")
+    }
+    nextQuestion();
+})
+buttonC.addEventListener("click", function(e) {
+    e.preventDefault();
+    console.log(this.innerHTML)
+    console.log(questions[questionNumber].correctAnswer)
+    if (this.innerHTML === questions[questionNumber].correctAnswer) {
+        console.log("correct")
+    } else {
+        console.log("incorrect")
+    }
+    nextQuestion();
+})
+buttonD.addEventListener("click", function(e) {
+    e.preventDefault();
+    console.log(this.innerHTML)
+    console.log(questions[questionNumber].correctAnswer)
+    if (this.innerHTML === questions[questionNumber].correctAnswer) {
+        console.log("correct")
+    } else {
+        console.log("incorrect")
+    }
+    nextQuestion();
+})
 
 
 //I want this function to start the timer
@@ -167,7 +212,14 @@ function WrongAnswer() {
 
 //this function will display next question
 function nextQuestion() {
-
+      questionNumber++
+      console.log(questionNumber)
+      if (questionNumber <= 5) {
+        displayQuestions(questionNumber)
+      } else {
+          console.log("end Game")
+      }
+      
 }
 
 
